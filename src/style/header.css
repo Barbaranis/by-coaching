@@ -1,0 +1,629 @@
+/* =========================================================
+   HEADER.CSS — BY Coaching
+   Objectif :
+   - Header premium sticky (desktop + mobile)
+   - Nav desktop visible uniquement sur ordinateur
+   - Burger + drawer uniquement sur mobile
+   - Accessibilité : focus visible + reduced motion
+   ========================================================= */
+
+
+/* =========================
+   1) VARIABLES (THEME)
+   ========================= */
+   :root{
+    --bg:#0b0c10;
+    --card: rgba(255,255,255,.07);
+    --stroke: rgba(255,255,255,.14);
+    --text: rgba(255,255,255,.94);
+    --muted: rgba(255,255,255,.72);
+    --shadow: 0 18px 50px rgba(0,0,0,.38);
+    --radius: 18px;
+  }
+  
+  
+  /* =========================
+     2) WRAPPER HEADER (Sticky)
+     ========================= */
+  .site-header{
+    /* sticky = reste en haut en scroll */
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  
+  
+    /* effet premium (glass) */
+    background: rgba(11,12,16,.70);
+    backdrop-filter: blur(12px);
+  
+  
+    /* séparation */
+    border-bottom: 1px solid rgba(255,255,255,.10);
+  }
+  
+  
+  /* =========================
+     3) LAYOUT INTERNE
+     ========================= */
+  .header-container{
+    /* centre + largeur max */
+    width: min(1120px, calc(100% - 32px));
+    margin: 0 auto;
+  
+  
+    /* hauteur/espacement vertical */
+    padding: 10px 0;
+  
+  
+    /* alignements */
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 12px;
+  }
+  
+  
+  /* =========================
+     4) PARTIE GAUCHE (Retour + Marque)
+     ========================= */
+  .header-left{
+    display:flex;
+    align-items:center;
+    gap: 10px;
+  
+  
+    /* évite que la marque se casse trop sur desktop */
+    min-width: 260px;
+  }
+  
+  
+  /* --- Bouton retour --- */
+  .header-back{
+    display:inline-flex;
+    align-items:center;
+    gap: 8px;
+  
+  
+    padding: 10px 12px;
+    border-radius: 999px;
+  
+  
+    /* glass */
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+  
+  
+    color: var(--text);
+    cursor: pointer;
+  
+  
+    /* micro animation */
+    transition: transform .15s ease, border-color .15s ease, background .15s ease;
+    min-height: 42px;
+  }
+  
+  
+  .header-back:hover{
+    transform: translateY(-1px);
+    border-color: rgba(255,255,255,.24);
+  }
+  
+  
+  /* Accessibilité : focus clavier */
+  .header-back:focus-visible{
+    outline: 3px solid rgba(255,255,255,.72);
+    outline-offset: 3px;
+  }
+  
+  
+  .header-backIcon{ font-size: 18px; }
+  .header-backText{ font-weight: 900; letter-spacing: .2px; }
+  
+  
+  /* placeholder quand on est sur "/" (pour garder l’alignement) */
+  .header-back--placeholder{
+    width: 92px;
+    opacity: 0;
+    pointer-events:none;
+  }
+  
+  
+  /* --- Marque (logo + titre) --- */
+  .header-brand{
+    display:flex;
+    align-items:center;
+    gap: 10px;
+  
+  
+    text-decoration:none;
+    color: var(--text);
+  }
+  
+  
+  /* Conteneur logo (carré arrondi + glow) */
+  .logo-wrap{
+    position: relative;
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+  
+  
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.14);
+    box-shadow: 0 12px 30px rgba(0,0,0,.35);
+  
+  
+    overflow:hidden;
+    display:grid;
+    place-items:center;
+  }
+  
+  
+  /* Image logo */
+  .header-logo{
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+  
+  
+    /* ombre “premium” */
+    filter: drop-shadow(0 10px 18px rgba(0,0,0,.55));
+  }
+  
+  
+  /* Glow subtil derrière le logo */
+  .logo-glow{
+    position:absolute;
+    inset:-20px;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.22), transparent 55%);
+    pointer-events:none;
+  }
+  
+  
+  /* Texte marque */
+  .brand-text{
+    display:flex;
+    flex-direction:column;
+    line-height: 1.05;
+  }
+  
+  
+  .brand-title{
+    font-weight: 950;
+    letter-spacing: -0.3px;
+  }
+  
+  
+  .brand-sub{
+    margin-top: 4px;
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 700;
+  }
+  
+  
+  /* =========================
+     5) NAV DESKTOP
+     (Visible uniquement sur ordinateur)
+     ========================= */
+  .header-nav{
+    display:flex;
+    align-items:center;
+    gap: 10px;
+  
+  
+    padding: 6px;
+    border-radius: 999px;
+  
+  
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.04);
+  }
+  
+  
+  .header-link{
+    padding: 10px 12px;
+    border-radius: 999px;
+  
+  
+    text-decoration:none;
+    color: rgba(255,255,255,.86);
+    font-weight: 800;
+  
+  
+    min-height: 40px;
+    display:inline-flex;
+    align-items:center;
+  
+  
+    transition: background .15s ease, transform .15s ease;
+  }
+  
+  
+  .header-link:hover{
+    background: rgba(255,255,255,.08);
+    transform: translateY(-1px);
+  }
+  
+  
+  .header-link:focus-visible{
+    outline: 3px solid rgba(255,255,255,.72);
+    outline-offset: 3px;
+  }
+  
+  
+  /* style de lien actif (NavLink) */
+  .header-link.active{
+    background: rgba(255,255,255,.10);
+    border: 1px solid rgba(255,255,255,.14);
+  }
+  
+  
+  /* =========================
+     6) PARTIE DROITE (CTA + Burger)
+     ========================= */
+  .header-right{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap: 10px;
+  
+  
+    min-width: 140px;
+  }
+  
+  
+  /* CTA desktop (ex: Réserver) */
+  .header-cta{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+  
+  
+    min-height: 44px;
+    padding: 12px 16px;
+    border-radius: 999px;
+  
+  
+    background: rgba(255,255,255,.92);
+    color: #0b0c10;
+  
+  
+    text-decoration:none;
+    font-weight: 950;
+    letter-spacing:.2px;
+  
+  
+    box-shadow: 0 18px 45px rgba(0,0,0,.35);
+    transition: transform .15s ease, opacity .15s ease;
+  }
+  
+  
+  .header-cta:hover{ transform: translateY(-1px); opacity:.96; }
+  
+  
+  .header-cta:focus-visible{
+    outline: 3px solid rgba(255,255,255,.72);
+    outline-offset: 3px;
+  }
+  
+  
+  /* =========================
+     7) RESPONSIVE BASE (layout)
+     ========================= */
+  @media (max-width: 900px){
+    /* spacing plus compact */
+    .header-container{ gap: 10px; }
+  
+  
+    /* on cache la nav desktop (mobile = burger) */
+    .header-nav{ display:none; }
+  
+  
+    .header-left{ min-width: 0; }
+    .header-right{ min-width: 0; }
+  }
+  
+  
+  @media (max-width: 520px){
+    /* padding mobile plus tight */
+    .header-container{ width: calc(100% - 24px); }
+  
+  
+    /* simplifie l’affichage */
+    .brand-sub{ display:none; }
+    .header-backText{ display:none; }
+    .header-back{ padding: 10px 12px; }
+  }
+  
+  
+  /* =========================
+     8) ACCESSIBILITÉ (Motion)
+     ========================= */
+  @media (prefers-reduced-motion: reduce){
+    .header-back,
+    .header-link,
+    .header-cta{
+      transition:none;
+    }
+    .header-back:hover,
+    .header-link:hover,
+    .header-cta:hover{
+      transform:none;
+    }
+  }
+  
+  
+  /* =========================================================
+     9) MENU BURGER + DRAWER (MOBILE ONLY)
+     ========================================================= */
+  
+  
+  /* --- Bouton burger (caché sur desktop) --- */
+  .burger{
+    display:none; /* IMPORTANT : jamais sur desktop */
+  
+  
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+  
+  
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(255,255,255,.06);
+    color: var(--text);
+  
+  
+    cursor: pointer;
+  
+  
+    transition: transform .15s ease, border-color .15s ease, background .15s ease;
+  
+  
+    align-items:center;
+    justify-content:center;
+  }
+  
+  
+  .burger:hover{
+    transform: translateY(-1px);
+    border-color: rgba(255,255,255,.24);
+  }
+  
+  
+  .burger:focus-visible{
+    outline: 3px solid rgba(255,255,255,.72);
+    outline-offset: 3px;
+  }
+  
+  
+  /* les 3 lignes */
+  .burger-lines{
+    width: 18px;
+    height: 14px;
+    display:grid;
+    gap: 3px;
+  }
+  
+  
+  .burger-lines span{
+    display:block;
+    height: 2px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.90);
+  }
+  
+  
+  /* --- Overlay (fond sombre derrière) --- */
+  .mobile-overlay{
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+  
+  
+    opacity: 0;
+    pointer-events:none;
+    transition: opacity .18s ease;
+  
+  
+    z-index: 60;
+  }
+  
+  
+  .mobile-overlay.is-open{
+    opacity: 1;
+    pointer-events:auto;
+  }
+  
+  
+  /* --- Drawer (panneau qui glisse) --- */
+  .mobile-drawer{
+    position: fixed;
+    top: 0;
+    right: 0;
+  
+  
+    height: 100vh;
+    width: min(380px, 86vw);
+  
+  
+    background: rgba(11,12,16,.92);
+    border-left: 1px solid rgba(255,255,255,.10);
+    backdrop-filter: blur(14px);
+  
+  
+    box-shadow: -24px 0 70px rgba(0,0,0,.55);
+  
+  
+    /* caché par défaut (hors écran) */
+    transform: translateX(110%);
+    transition: transform .18s ease;
+  
+  
+    display:grid;
+    grid-template-rows: auto 1fr auto;
+    padding: 14px;
+  
+  
+    z-index: 70;
+  }
+  
+  
+  .mobile-drawer.is-open{
+    transform: translateX(0);
+  }
+  
+  
+  /* header du drawer */
+  .drawer-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 10px;
+  
+  
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,.10);
+  }
+  
+  
+  .drawer-title{
+    font-weight: 950;
+    letter-spacing: -.2px;
+    font-size: 16px;
+  }
+  
+  
+  .drawer-close{
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+  
+  
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(255,255,255,.06);
+    color: var(--text);
+  
+  
+    cursor:pointer;
+  }
+  
+  
+  .drawer-close:focus-visible{
+    outline: 3px solid rgba(255,255,255,.72);
+    outline-offset: 3px;
+  }
+  
+  
+  /* liens du drawer */
+  .drawer-links{
+    padding-top: 12px;
+    display:grid;
+    gap: 10px;
+  }
+  
+  
+  .drawer-link{
+    text-decoration:none;
+    color: rgba(255,255,255,.90);
+    font-weight: 900;
+  
+  
+    padding: 12px 12px;
+    border-radius: 16px;
+  
+  
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(0,0,0,.18);
+  }
+  
+  
+  .drawer-link:hover{
+    border-color: rgba(255,255,255,.22);
+  }
+  
+  
+  .drawer-link.active{
+    background: rgba(255,255,255,.10);
+    border-color: rgba(255,255,255,.18);
+  }
+  
+  
+  /* CTA du drawer */
+  .drawer-cta{
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,.10);
+    display:grid;
+    gap: 10px;
+  }
+  
+  
+  .drawer-btn{
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+  
+  
+    min-height: 46px;
+    border-radius: 999px;
+  
+  
+    background: rgba(255,255,255,.92);
+    color:#0b0c10;
+    font-weight: 950;
+  }
+  
+  
+  .drawer-note{
+    margin:0;
+    color: rgba(255,255,255,.70);
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  
+  
+  /* =========================
+     10) VISIBILITÉ DES MENUS (BÉTON)
+     Important :
+     - Desktop : nav visible / burger + overlay + drawer invisibles
+     - Mobile : nav cachée / burger + overlay + drawer visibles
+     ========================= */
+  
+  
+  /* --- Desktop par défaut (≥ 901px) --- */
+  .header-nav { display:flex; }     /* nav desktop visible */
+  .burger { display:none; }         /* burger caché */
+  .mobile-overlay { display:none; } /* overlay inexistant */
+  .mobile-drawer { display:none; }  /* drawer inexistant */
+  
+  
+  /* --- Mobile uniquement (≤ 900px) --- */
+  @media (max-width: 900px){
+    .header-nav { display:none; }        /* cache nav desktop */
+    .burger { display:inline-flex; }     /* affiche burger */
+  
+  
+    /* overlay + drawer existent uniquement sur mobile */
+    .mobile-overlay{ display:block; }
+    .mobile-drawer{ display:grid; }
+  
+  
+    /* CTA desktop cachée (on utilise le bouton dans le drawer) */
+    .header-cta{ display:none; }
+  }
+  
+  
+  /* =========================
+     11) ACCESSIBILITÉ (Motion) — burger + drawer
+     ========================= */
+  @media (prefers-reduced-motion: reduce){
+    .burger,
+    .mobile-overlay,
+    .mobile-drawer{
+      transition:none;
+    }
+    .burger:hover{ transform:none; }
+  }
+  
+  
